@@ -9,6 +9,20 @@ namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
 
 //****************************************************************************
+//*                     foo
+//****************************************************************************
+class foo
+{
+public:
+	friend std::ostream& operator<<(std::ostream&, const foo&);
+};
+std::ostream& operator<<(std::ostream& os, const foo& oFoo)
+{
+	os << "bla\n";
+	return os;
+}
+
+//****************************************************************************
 //*                     write_message_to_string
 //****************************************************************************
 template <class Message, class DynamicBuffer>
@@ -37,6 +51,9 @@ int main()
 {
     std::cout << "file_body_experiment\n";
 	std::cout << "====================\n";
+
+	foo oFoo;
+	std::cout << oFoo;
 
 	std::string path = "";
 	path.append("./index.html");
